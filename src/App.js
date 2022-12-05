@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+
+import { Album } from "./components/Album";
+import { MinhasFigurinhas } from "./components/MinhasFigurinhas";
 
 function App() {
+  const [figurinhas, setFigurinhas] = useState([
+    { id: 1, pos: 1, name: "Ronaldo" },
+    { id: 3, pos: 1, name: "Ronaldo" },
+    { id: 2, pos: 3, name: "Rivaldo" },
+  ]);
+
+  const colaFigurinha = (id) =>
+    setFigurinhas((p) => p.filter((f) => f.id !== id));
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" style={{ display: "flex" }}>
+      <MinhasFigurinhas figurinhas={figurinhas} />
+      <Album colaFigurinha={colaFigurinha} />
     </div>
   );
 }
