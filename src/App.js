@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 
+import {DndProvider} from "react-dnd"
+import {HTML5Backend} from 'react-dnd-html5-backend'
+
 import { Album } from "./components/Album";
 import { MinhasFigurinhas } from "./components/MinhasFigurinhas";
 
@@ -14,10 +17,12 @@ function App() {
     setFigurinhas((p) => p.filter((f) => f.id !== id));
 
   return (
-    <div className="App" style={{ display: "flex" }}>
-      <MinhasFigurinhas figurinhas={figurinhas} />
-      <Album colaFigurinha={colaFigurinha} />
-    </div>
+    <DndProvider backend={HTML5Backend}>
+      <div className="App" style={{ display: "flex" }}>
+        <MinhasFigurinhas figurinhas={figurinhas} />
+        <Album colaFigurinha={colaFigurinha} />
+      </div>
+    </DndProvider>
   );
 }
 
